@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --color-bg: #030816;
+  --color-accent: #00D1FF;
+  --color-success: #00E096;
+  --color-alert: #FF3D71;
+  --color-glass: rgba(255, 255, 255, 0.03);
+  --color-border-subtle: rgba(255, 255, 255, 0.1);
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-bg text-white antialiased min-h-screen relative overflow-x-hidden;
+  }
+}
+
+@layer components {
+  .atmosphere {
+    @apply fixed inset-0 pointer-events-none -z-10;
+    background: 
+      radial-gradient(circle at 80% 20%, rgba(0, 209, 255, 0.15) 0%, transparent 40%), 
+      radial-gradient(circle at 20% 80%, rgba(0, 224, 150, 0.1) 0%, transparent 40%);
+  }
+
+  .glass-panel {
+    @apply bg-glass backdrop-blur-[20px] border border-border-subtle rounded-[24px] shadow-2xl transition-all duration-300;
+  }
+  
+  .usage-number {
+    @apply text-[64px] font-[800] leading-none tracking-[-2px] text-accent;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s ease-in-out infinite;
+}
+
+/* Water Flow Animation */
+@keyframes waterFlow {
+  0% { transform: translateY(0) scaleX(1); }
+  50% { transform: translateY(5px) scaleX(1.02); }
+  100% { transform: translateY(0) scaleX(1); }
+}
+
+.animate-water {
+  animation: waterFlow 3s ease-in-out infinite;
+}
+
+.water-gradient {
+  background: linear-gradient(180deg, var(--color-accent) 0%, #0284c7 100%);
+}
+
